@@ -1,0 +1,9 @@
+{
+  "molecule": "Benceno (fragmento Taxol)",
+  "method": "Exact Diagonalization (Noiseless Quantum Simulator)",
+  "active_space": "CAS(6,6)",
+  "num_qubits": 12,
+  "classical_engine": "PSI4",
+  "total_energy_hartree": -218.3904018750024,
+  "total_energy_eV": -5942.708581581441
+}
