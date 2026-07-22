@@ -80,18 +80,25 @@ try:
 
     st.markdown("---")
     
-    # 7. RENDERIZADO DE LA VISUALIZACIÓN ÉPICA 3D
-    st.subheader("🎨 Renderizado Orbital 3D (Alta Resolución)")
-    st.markdown("Interactúa con el modelo molecular del sitio activo. El color **Dorado/Azul** representa el HOMO, y el **Plateado/Rojo** representa el LUMO.")
+# 7. RENDERIZADO DE LA VISUALIZACIÓN 3D
+st.subheader("🎨 Renderizado Orbital 3D")
+
+html_file = "taxol_orbitals_epica.html" 
+
+if os.path.exists(html_file):
+    with open(html_file, 'r', encoding='utf-8') as f:
+        html_source_code = f.read()
     
-    # Cargamos el HTML directamente en el iframe de Streamlit
-    html_file = "taxol_orbitals_epica.html"
-    if os.path.exists(html_file):
-        with open(html_file, 'r', encoding='utf-8') as f:
-            html_source_code = f.read()
-        components.html(html_source_code, height=850, width=1600, scrolling=False)
-    else:
-        st.error(f"No se encontró el archivo {html_file}. Ejecuta primero Taxol_visualizacion_epica.py")
+    # Usamos un contenedor de Streamlit para forzar el ancho máximo
+    with st.container():
+        components.html(
+            html_source_code, 
+            height=420,  # Un poco más que el height del plot (400)
+            width=820,   # Un poco más que el width del plot (800)
+            scrolling=False
+        )
+else:
+    st.error(f"Error: No se encontró {html_file}. Genera primero la visualización.")
         
     # 8. LOG DE AUDITORÍA
     with st.expander("📝 Log de Trazabilidad y Auditoría (JSON)"):
